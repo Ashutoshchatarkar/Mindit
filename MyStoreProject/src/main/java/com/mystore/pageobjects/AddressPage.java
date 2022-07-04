@@ -15,12 +15,12 @@ import com.mystore.base.BaseClass;
  *
  */
 public class AddressPage extends BaseClass {
-	
-	Action action= new Action();
-	
-	@FindBy(xpath="//span[text()='Proceed to checkout']")
+
+	Action action = new Action();
+
+	@FindBy(xpath = "//span[text()='Proceed to checkout']")
 	private WebElement proceedToCheckOut;
-	
+
 	public AddressPage() {
 		PageFactory.initElements(getDriver(), this);
 	}
@@ -29,5 +29,5 @@ public class AddressPage extends BaseClass {
 		action.click(getDriver(), proceedToCheckOut);
 		return new ShippingPage();
 	}
-	
+
 }

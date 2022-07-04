@@ -23,10 +23,11 @@ import com.mystore.actiondriver.Action;
 import com.mystore.utility.ExtentManager;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
 /**
- * @author Hitendra: BaseClass is used to load the config file and Initialize 
- * WebDriver
- *  
+ * @author Hitendra: BaseClass is used to load the config file and Initialize
+ *         WebDriver
+ * 
  */
 public class BaseClass {
 	public static Properties prop;
@@ -34,7 +35,7 @@ public class BaseClass {
 	// Declare ThreadLocal Driver
 	public static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
 
-	//loadConfig method is to load the configuration
+	// loadConfig method is to load the configuration
 	@BeforeSuite(groups = { "Smoke", "Sanity", "Regression" })
 	public void loadConfig() {
 		ExtentManager.setExtent();
@@ -71,21 +72,21 @@ public class BaseClass {
 			WebDriverManager.iedriver().setup();
 			driver.set(new InternetExplorerDriver());
 		}
-		//Maximize the screen
+		// Maximize the screen
 		getDriver().manage().window().maximize();
-		//Delete all the cookies
+		// Delete all the cookies
 		getDriver().manage().deleteAllCookies();
-		//Implicit TimeOuts
-		getDriver().manage().timeouts().implicitlyWait
-		(Integer.parseInt(prop.getProperty("implicitWait")),TimeUnit.SECONDS);
-		//PageLoad TimeOuts
-		getDriver().manage().timeouts().pageLoadTimeout
-		(Integer.parseInt(prop.getProperty("pageLoadTimeOut")),TimeUnit.SECONDS);
-		//Launching the URL
+		// Implicit TimeOuts
+		getDriver().manage().timeouts().implicitlyWait(Integer.parseInt(prop.getProperty("implicitWait")),
+				TimeUnit.SECONDS);
+		// PageLoad TimeOuts
+		getDriver().manage().timeouts().pageLoadTimeout(Integer.parseInt(prop.getProperty("pageLoadTimeOut")),
+				TimeUnit.SECONDS);
+		// Launching the URL
 		getDriver().get(prop.getProperty("url"));
 	}
 
-	@AfterSuite(groups = { "Smoke", "Regression","Sanity" })
+	@AfterSuite(groups = { "Smoke", "Regression", "Sanity" })
 	public void afterSuite() {
 		ExtentManager.endReport();
 	}

@@ -8,40 +8,40 @@ import com.mystore.actiondriver.Action;
 import com.mystore.base.BaseClass;
 
 public class IndexPage extends BaseClass {
-	
-	Action action= new Action();
-	
-	@FindBy(xpath = "//a[@class='login']") 
+
+	Action action = new Action();
+
+	@FindBy(xpath = "//a[@class='login']")
 	private WebElement signInBtn;
-	
+
 	@FindBy(xpath = "//img[@class='logo img-responsive']")
 	private WebElement myStoreLogo;
-	
-	@FindBy(id="search_query_top")
+
+	@FindBy(id = "search_query_top")
 	private WebElement searchProductBox;
-	
-	@FindBy(name="submit_search")
+
+	@FindBy(name = "submit_search")
 	private WebElement searchButton;
-	
+
 	public IndexPage() {
 		PageFactory.initElements(getDriver(), this);
 	}
-	
+
 	public LoginPage clickOnSignIn() throws Throwable {
 		action.fluentWait(getDriver(), signInBtn, 10);
 		action.click(getDriver(), signInBtn);
 		return new LoginPage();
 	}
-	
+
 	public boolean validateLogo() throws Throwable {
 		return action.isDisplayed(getDriver(), myStoreLogo);
 	}
-	
+
 	public String getMyStoreTitle() {
-		String myStoreTitel=getDriver().getTitle();
+		String myStoreTitel = getDriver().getTitle();
 		return myStoreTitel;
 	}
-	
+
 	public SearchResultPage searchProduct(String productName) throws Throwable {
 		action.type(searchProductBox, productName);
 		action.scrollByVisibilityOfElement(getDriver(), searchButton);
@@ -49,7 +49,5 @@ public class IndexPage extends BaseClass {
 		Thread.sleep(3000);
 		return new SearchResultPage();
 	}
-	
-	
 
 }

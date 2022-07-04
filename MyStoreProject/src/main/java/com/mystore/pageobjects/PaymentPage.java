@@ -15,19 +15,19 @@ import com.mystore.base.BaseClass;
  *
  */
 public class PaymentPage extends BaseClass {
-	
-	Action action= new Action();
-	
+
+	Action action = new Action();
+
 	@FindBy(xpath = "//a[contains(text(),'Pay by bank wire')]")
 	private WebElement bankWireMethod;
-	
+
 	@FindBy(xpath = "//a[contains(text(),'Pay by check')]")
 	private WebElement payByCheckMethod;
-	
+
 	public PaymentPage() {
 		PageFactory.initElements(getDriver(), this);
 	}
-	
+
 	public OrderSummary clickOnPaymentMethod() throws Throwable {
 		action.click(getDriver(), bankWireMethod);
 		return new OrderSummary();

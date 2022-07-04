@@ -96,7 +96,7 @@ public class DataProviders {
 		}
 		return data;
 	}
-	
+
 	@DataProvider(name = "newAcountDetailsData")
 	public Object[][] accountCreation() {
 
@@ -105,16 +105,16 @@ public class DataProviders {
 		// Total Columns
 		int column = obj.getColumnCount("AccountCreationData");
 		int actRows = rows - 1;
-		//Created an object of array to store data
+		// Created an object of array to store data
 		Object[][] data = new Object[actRows][1];
-		
+
 		for (int i = 0; i < actRows; i++) {
 			Map<String, String> hashMap = new HashMap<>();
 			for (int j = 0; j < column; j++) {
 				hashMap.put(obj.getCellData("AccountCreationData", j, 1),
 						obj.getCellData("AccountCreationData", j, i + 2));
 			}
-			data[i][0]=hashMap;
+			data[i][0] = hashMap;
 		}
 		return data;
 	}

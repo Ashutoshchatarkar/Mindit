@@ -2,6 +2,7 @@
  * 
  */
 package com.mystore.pageobjects;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -13,15 +14,15 @@ import com.mystore.base.BaseClass;
  *
  */
 public class AccountCreationPage extends BaseClass {
-	
-	Action action= new Action();
-	
+
+	Action action = new Action();
+
 	@FindBy(xpath = "//h1[text()='Create an account']")
 	private WebElement formTitle;
-	
+
 	@FindBy(id = "uniform-id_gender1")
 	private WebElement mr;
-	
+
 	@FindBy(id = "id_gender2")
 	private WebElement mrs;
 
@@ -78,31 +79,21 @@ public class AccountCreationPage extends BaseClass {
 
 	@FindBy(name = "submitAccount")
 	private WebElement registerBtn;
-	
+
 	public AccountCreationPage() {
 		PageFactory.initElements(getDriver(), this);
 	}
-	
-	public void createAccount(String gender,String fName, 
-			String lName, 
-			String pswd, 
-			String day, 
-			String month, 
-			String year,
-			String comPany, 
-			String addr, 
-			String cityString, 
-			String stateName, 
-			String zip, 
-			String countryName,
-			String mobilePhone) throws Throwable {
-		
-		if(gender.equalsIgnoreCase("Mr")) {
+
+	public void createAccount(String gender, String fName, String lName, String pswd, String day, String month,
+			String year, String comPany, String addr, String cityString, String stateName, String zip,
+			String countryName, String mobilePhone) throws Throwable {
+
+		if (gender.equalsIgnoreCase("Mr")) {
 			action.click(getDriver(), mr);
 		} else {
 			action.click(getDriver(), mrs);
 		}
-		
+
 		action.type(firstName, fName);
 		action.type(lastName, lName);
 		action.type(passWord, pswd);
@@ -117,14 +108,14 @@ public class AccountCreationPage extends BaseClass {
 		action.selectByVisibleText(countryName, country);
 		action.type(mobile, mobilePhone);
 	}
-	
+
 	public HomePage validateRegistration() throws Throwable {
 		registerBtn.click();
 		return new HomePage();
 	}
-	
+
 	public boolean validateAcountCreatePage() throws Throwable {
-		 return action.isDisplayed(getDriver(), formTitle);
+		return action.isDisplayed(getDriver(), formTitle);
 	}
-	
+
 }

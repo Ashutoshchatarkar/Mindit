@@ -15,20 +15,19 @@ import com.mystore.base.BaseClass;
  *
  */
 public class OrderConfirmationPage extends BaseClass {
-	
-	Action action= new Action();
-	
-	@FindBy(xpath="//p/strong[contains(text(),'Your order on My Store is complete.')]")
+
+	Action action = new Action();
+
+	@FindBy(xpath = "//p/strong[contains(text(),'Your order on My Store is complete.')]")
 	private WebElement confirmMessag;
-	
+
 	public OrderConfirmationPage() {
 		PageFactory.initElements(getDriver(), this);
 	}
-	
+
 	public String validateConfirmMessage() {
-		String confirmMsg=confirmMessag.getText();
+		String confirmMsg = confirmMessag.getText();
 		return confirmMsg;
 	}
 
-	
 }
